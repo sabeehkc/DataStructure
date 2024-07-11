@@ -140,7 +140,7 @@ class LinkedList {
             prev = curr
             curr = next
         }
-        this.head = prev
+        this.head = prevf
     }
 
     // reverse linkedlist using recursion

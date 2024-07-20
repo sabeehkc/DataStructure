@@ -170,33 +170,48 @@ class BinarySearchTree {
     }
 
     isBST(node = this.root, min = null, max = null) {
-        if (node === null) {
-            return true;
-        }
-
-        if ((min !== null && node.value <= min) || (max !== null && node.value >= max)) {
-            return false;
-        }
-
-        return this.isBST(node.left, min, node.value) && this.isBST(node.right, node.value, max);
+    if (node === null) {
+      return true;
     }
+
+    if ((min !== null && node.value <= min) || (max !== null && node.value >= max)) {
+      return false;
+    }
+
+    return this.isBST(node.left, min, node.value) && this.isBST(node.right, node.value, max) ;
+  }
 
     heightOfTree(root) {
         if (root === null) {
             return 0;
         }
 
-        // Recursively find the height of the left and right subtrees
         const leftHeight = this.heightOfTree(root.left);
         const rightHeight = this.heightOfTree(root.right);
 
-        // Height of the tree is the maximum of left and right subtree heights plus 1 (for the root node)
         return Math.max(leftHeight, rightHeight) + 1;
+    }
+
+    findClosestValue(target, root = this.root, closest = null) {
+        if (root === null) {
+            return closest;
+        }
+        if (closest === null || Math.abs(root.value - target) < Math.abs(closest - target)) {
+            closest = root.value;
+        }
+        if (target < root.value) {
+            return this.findClosestValue(target, root.left, closest);
+        } else if (target > root.value) {
+            return this.findClosestValue(target, root.right, closest);
+        } else {
+            return closest;
+        }
     }
 }
 
 // Test cases
 const bst = new BinarySearchTree();
+
 
 bst.insert(10);
 bst.insert(5);
@@ -210,5 +225,6 @@ bst.insert(1);
 
 console.log("Height",bst.heightOfTree(bst.root));
 
-bst.levelOrder();  // Should print the tree in level order
+bst.levelOrder(); 
+
 console.log(bst.isBST()); 

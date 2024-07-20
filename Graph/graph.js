@@ -88,7 +88,7 @@ class Graph {
             const neighbors = this.adjacencyList[vertex];
             for(const neighbor of neighbors){
                 if(!visited.has(neighbor)){
-                    dfsRecursive(neighbor)
+                    dfsRecursive(neighbor) 
                 }
             }
         }

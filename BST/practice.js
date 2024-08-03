@@ -108,12 +108,13 @@ class BinarySearchTree {
         }
     }
 
-    inOrder(root) {
+    inOrder(root,result = []) {
         if (root) {
-            this.inOrder(root.left);
-            console.log(root.value);
-            this.inOrder(root.right);
+            this.inOrder(root.left , result);
+            result.push(root.value)
+            this.inOrder(root.right, result);
         }
+        return result
     }
 
     postOrder(root) {
@@ -133,24 +134,44 @@ class BinarySearchTree {
 
     findSecondLargest(root) {
         if (!root || (!root.left && !root.right)) {
-            return null; // Tree must have at least 2 nodes
+            return null; 
         }
 
         let current = root;
         while (current) {
-            // Case 1: Current node is the largest and has a left subtree
-            // The second largest is the largest in that left subtree
+            
             if (current.left && !current.right) {
                 return this.findLargest(current.left);
             }
 
-            // Case 2: Current node is parent of the largest node, and the largest node has no children
-            // The current node is the second largest
             if (current.right && !current.right.left && !current.right.right) {
                 return current;
             }
 
             current = current.right;
+        }
+    }
+
+    findSeondSmallest(root){
+        if(!root || (!root.left && !root.right)){
+            return null
+        }
+
+        let current = root
+        while(current){
+
+            if (current.right && !current.left) {
+                while (current.right.left !== null) {
+                    current = current.right.left;
+                }
+                return current.right;
+            }
+
+            if(current.left && !current.left.left && !current.left.right){
+                return current
+            }
+
+            current = current.left
         }
     }
 
@@ -169,17 +190,13 @@ class BinarySearchTree {
         }
     }
 
-    isBST(node = this.root, min = null, max = null) {
-    if (node === null) {
-      return true;
+    isBst(root){
+        let arr=this.inOrder(root)
+        for(let i=1;i<arr.length;i++){
+            if(arr[i]<arr[i-1]){return false}
+        }
+        return true
     }
-
-    if ((min !== null && node.value <= min) || (max !== null && node.value >= max)) {
-      return false;
-    }
-
-    return this.isBST(node.left, min, node.value) && this.isBST(node.right, node.value, max) ;
-  }
 
     heightOfTree(root) {
         if (root === null) {
@@ -207,6 +224,22 @@ class BinarySearchTree {
             return closest;
         }
     }
+
+    findSmallestParent() {
+        if (this.root === null || (this.root.left === null && this.root.right === null)) {
+            return null; 
+        }
+
+        let current = this.root;
+        let parent = null;
+
+        while (current.left !== null) {
+            parent = current;
+            current = current.left;
+        }
+
+        return parent;
+    }
 }
 
 // Test cases
@@ -227,4 +260,4 @@ console.log("Height",bst.heightOfTree(bst.root));
 
 bst.levelOrder(); 
 
-console.log(bst.isBST()); 
+console.log(bst.isBst()); 

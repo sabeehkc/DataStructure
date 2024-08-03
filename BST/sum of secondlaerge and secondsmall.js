@@ -12,12 +12,10 @@ function secondLargest(root) {
 
     let current = root;
     while (current) {
-        // Case: Current node is the largest and has a left subtree
         if (current.left && !current.right) {
             return largest(current.left);
         }
 
-        // Case: Current node is parent of the largest, and the largest has no children
         if (current.right && !current.right.left && !current.right.right) {
             return current;
         }
@@ -74,10 +72,11 @@ let sum = 0;
 if (secondLargestNode) {
     sum += secondLargestNode.value;
 }
-console.log(secondLargestNode.value)
+console.log("Second Largest:",secondLargestNode.value)
 
 if (secondSmallestNode) {
     sum += secondSmallestNode.value;
 }
-console.log(secondSmallestNode.value)
-console.log(sum);
+console.log("Second Smallest:",secondSmallestNode.value)
+
+console.log("Sum:",sum);

@@ -1,4 +1,3 @@
-
 class Node{
     constructor(value){
         this.value=value
@@ -140,7 +139,7 @@ class LinkedList {
             prev = curr
             curr = next
         }
-        this.head = prevf
+        this.head = prev
     }
 
     // reverse linkedlist using recursion
@@ -171,45 +170,25 @@ class LinkedList {
         }
     }
 
-    // removedup2(){
-    //     let out=this.head
-    //     while(out){
-    //         let prev=out.next
-    //         let j;
-    //         if(prev){
-    //           j=prev.next 
-    //           while(j) {
-    //             if()
-    //           }
-    //         }
-    //         else{
-    //             if(prev.val==out.val){
-    //                 out.val=null
-    //             }
-    //         }
-            
-    //     }
-    // }
-
 
     // // Remove duplicates  using set
-    // removeDuplicates(){
-    //     let curr = this.head;
-    //     let seen = new Set(); 
-    //     let prev = null; 
+    removeDuplicates(){
+        let curr = this.head;
+        let seen = new Set(); 
+        let prev = null; 
     
-    //     while(curr){
-    //         if(seen.has(curr.value)){
-    //             prev.next = curr.next;
+        while(curr){
+            if(seen.has(curr.value)){
+                prev.next = curr.next;
                 
-    //         } else {
+            } else {
                 
-    //             seen.add(curr.value);
-    //             prev = curr;
-    //         }
-    //         curr = curr.next; 
-    //     }
-    // }
+                seen.add(curr.value);
+                prev = curr;
+            }
+            curr = curr.next; 
+        }
+    }
 
 
     // Convert array to linked list

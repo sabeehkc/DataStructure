@@ -100,7 +100,7 @@ myheap.push(9);
 console.log(myheap.heap);
 myheap.delete();
 console.log(myheap.heap);
-myheap.delete();
-console.log(myheap.heap);
+// myheap.delete();
+// console.log(myheap.heap);
 
 console.log(myheap.heapsort([45, 23, 177, 654, 34, 2]));

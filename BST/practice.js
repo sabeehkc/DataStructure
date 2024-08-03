@@ -240,6 +240,32 @@ class BinarySearchTree {
 
         return parent;
     }
+
+    isPrime(num) {
+        if (num <= 1) return false;
+        if (num <= 3) return true;
+
+        if (num % 2 === 0 || num % 3 === 0) return false;
+
+        for (let i = 5; i * i <= num; i += 6) {
+            if (num % i === 0 || num % (i + 2) === 0) return false;
+        }
+
+        return true;
+    }
+
+    // Find all prime numbers in the BST
+    findPrimes(root, primes = []) {
+        if (root) {
+            this.findPrimes(root.left, primes);
+            if (this.isPrime(root.value)) {
+                primes.push(root.value);
+            }
+            this.findPrimes(root.right, primes);
+        }
+        return primes;
+    }
+
 }
 
 // Test cases
@@ -261,3 +287,6 @@ console.log("Height",bst.heightOfTree(bst.root));
 bst.levelOrder(); 
 
 console.log(bst.isBst()); 
+
+const primes = bst.findPrimes(bst.root);
+console.log("Prime numbers in the BST:", primes);

@@ -10,9 +10,9 @@ function insertionSort(arr) {
     }
 }
 
-const arr = [8,20,-2,4,-6]
-insertionSort(arr)
-console.log(arr);
+// const arr = [8,20,-2,4,-6]
+// insertionSort(arr)
+// console.log(arr);
 
 
 
@@ -21,7 +21,7 @@ function insertionSortRecursion(arr, n = arr.length) {
         return;
     }
         
-    insertionSort(arr, n - 1);
+    insertionSortRecursion(arr, n - 1);
         
     let last = arr[n - 1];
     let j = n - 2;     
@@ -34,6 +34,6 @@ function insertionSortRecursion(arr, n = arr.length) {
     arr[j + 1] = last;
 }  
 
-// const arr = [8, 20, -2, 4, -6];
-// insertionSortRecursion(arr);
-// console.log(arr); 
+const arr = [8, 20, -2, 4, -6];
+insertionSortRecursion(arr);
+console.log(arr); 

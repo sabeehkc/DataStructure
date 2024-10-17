@@ -201,7 +201,7 @@ const array = [5,10,15,12,15]
 list.formArray(array)
 list.print()
 
-// // console.log("Searched value index:",list.search(40));
+// console.log("Searched value index:",list.search(40));
 
 // list.reverse()
 // list.print()

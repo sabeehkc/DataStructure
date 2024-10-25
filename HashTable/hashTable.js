@@ -37,7 +37,7 @@ class HashTable {
 
 }
 
-const table = new HashTable(50)
+const table = new HashTable(50) //Big O - O(1) constant
 
 table.set("name","Bruce")
 table.set("age",25)
